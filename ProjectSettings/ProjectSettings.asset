@@ -12,7 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: NTU
+  companyName: College of Computing and Data Science (CCDS) | Nanyang Technological
+    University (NTU)
   productName: TutorialRollerBallOptimizedEnv
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -161,7 +162,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.NTU.TutorialRollerBallOptimizedEnv
+    Standalone: com.College-of-Computing-and-Data-Science--CCDS----Nanyang-Technological-University--NTU-.TutorialRollerBallOptimizedEnv
   buildNumber:
     Bratwurst: 0
     Standalone: 0

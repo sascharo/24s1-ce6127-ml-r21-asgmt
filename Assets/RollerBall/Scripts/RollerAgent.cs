@@ -5,9 +5,9 @@ using Unity.MLAgents.Actuators;
 
 public class RollerAgent : Agent
 {
-    public Transform Target;
-    public float ResetYPosition = 0.5f;
-    public float TargetThreshold = 1.42f;
+    public Transform target;
+    public float resetYPosition = 0.5f;
+    public float targetThreshold = 1.42f;
     public float forceMultiplier = 10f;
 
     private Rigidbody rBody;
@@ -24,19 +24,19 @@ public class RollerAgent : Agent
         {
             rBody.angularVelocity = Vector3.zero;
             rBody.velocity = Vector3.zero;
-            transform.localPosition = new Vector3(0f, ResetYPosition, 0f);
+            transform.localPosition = new Vector3(0f, resetYPosition, 0f);
         }
 
         // Move the target to a new spot
         float xPos = Random.Range(-4f, 4f);
         float zPos = Random.Range(-4f, 4f);
-        Target.localPosition = new Vector3(xPos, ResetYPosition, zPos);
+        target.localPosition = new Vector3(xPos, resetYPosition, zPos);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // Target and Agent positions
-        sensor.AddObservation(Target.localPosition);
+        sensor.AddObservation(target.localPosition);
         sensor.AddObservation(transform.localPosition);
 
         // Agent velocity
@@ -53,10 +53,10 @@ public class RollerAgent : Agent
         rBody.AddForce(controlSignal * forceMultiplier);
 
         // Rewards
-        float distanceToTarget = Vector3.Distance(transform.localPosition, Target.localPosition);
+        float distanceToTarget = Vector3.Distance(transform.localPosition, target.localPosition);
 
         // Reached target
-        if (distanceToTarget < TargetThreshold)
+        if (distanceToTarget < targetThreshold)
         {
             SetReward(1.0f);
             EndEpisode();

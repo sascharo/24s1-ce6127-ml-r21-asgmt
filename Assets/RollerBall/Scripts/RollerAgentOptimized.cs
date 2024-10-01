@@ -5,16 +5,16 @@ using Unity.MLAgents.Actuators;
 
 public class RollerAgentOptimized : Agent
 {
-    public Transform Target;
-    public float ForceMultiplier = 10f;
+    public Transform target;
+    public float forceMultiplier = 10f;
     public int seed = 20241007;
 
     private Rigidbody rBody;
     private System.Random systemRandom;
 
-    private const float ResetYPosition = 0.5f;
-    private const float TargetThreshold = 1.42f;
-    private const float EpisodeTimeoutReward = -0.001f; // Small negative reward per step
+    private const float resetYPosition = 0.5f;
+    private const float targetThreshold = 1.42f;
+    private const float episodeTimeoutReward = -0.001f; // Small negative reward per step
 
     protected override void Awake()
     {
@@ -22,7 +22,7 @@ public class RollerAgentOptimized : Agent
 
         systemRandom = new System.Random(seed);
 
-        if (Target == null)
+        if (target == null)
         {
             Debug.LogError("Target reference is null! Please assign a Target in the inspector.");
         }
@@ -59,7 +59,7 @@ public class RollerAgentOptimized : Agent
         {
             rBody.angularVelocity = Vector3.zero;
             rBody.velocity = Vector3.zero;
-            transform.localPosition = new Vector3(0f, ResetYPosition, 0f);
+            transform.localPosition = new Vector3(0f, resetYPosition, 0f);
         }
     }
 
@@ -68,13 +68,13 @@ public class RollerAgentOptimized : Agent
         // Move the target to a new position using systemRandom
         float xPos = (float)(systemRandom.NextDouble() * 8f - 4f);
         float zPos = (float)(systemRandom.NextDouble() * 8f - 4f);
-        Target.localPosition = new Vector3(xPos, ResetYPosition, zPos);
+        target.localPosition = new Vector3(xPos, resetYPosition, zPos);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // Add target and agent positions (each as Vector3)
-        sensor.AddObservation(Target.localPosition);
+        sensor.AddObservation(target.localPosition);
         sensor.AddObservation(transform.localPosition);
 
         // Add agent velocity (only x and z axes)
@@ -84,12 +84,12 @@ public class RollerAgentOptimized : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         Vector3 controlSignal = new Vector3(actionBuffers.ContinuousActions[0], 0f, actionBuffers.ContinuousActions[1]);
-        rBody.AddForce(controlSignal * ForceMultiplier);
+        rBody.AddForce(controlSignal * forceMultiplier);
 
-        float distanceToTarget = Vector3.Distance(transform.localPosition, Target.localPosition);
+        float distanceToTarget = Vector3.Distance(transform.localPosition, target.localPosition);
 
         // Reward shaping
-        if (distanceToTarget < TargetThreshold)
+        if (distanceToTarget < targetThreshold)
         {
             SetReward(1.0f);
             EndEpisode();
@@ -101,7 +101,7 @@ public class RollerAgentOptimized : Agent
         else
         {
             // Optional: Small negative reward to encourage efficiency
-            AddReward(EpisodeTimeoutReward);
+            AddReward(episodeTimeoutReward);
         }
     }
 

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b8167a9c7929194dbfb37f65f01abc1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7346c0ed934d0934397ceddf5baced1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,10 +297,18 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 5561528673415089146}
+    - target: {fileID: 6508584305795410248, guid: 97b1a5db6005b8e43bf7f65fba25b401, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 5561528673415089146}
     - target: {fileID: 6932237718284812889, guid: 97b1a5db6005b8e43bf7f65fba25b401, type: 3}
       propertyPath: m_Name
       value: RollerAgentOptimized
       objectReference: {fileID: 0}
+    - target: {fileID: 8521385852280460081, guid: 97b1a5db6005b8e43bf7f65fba25b401, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e397fdda3e1f54e4d9c7933673dd940e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
